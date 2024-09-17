@@ -1,0 +1,84 @@
+{
+	"name": "template-npm-pub-ts",
+	"version": "0.0.1",
+	"description": "Template repo for creating public packages written in typescript. Lintable, testable and releasable.",
+	"type": "module",
+	"scripts": {
+		"prerelease": "pnpm lint && pnpm build:pub && pnpm test",
+		"test": "pnpm mocha ./out/test/**/*.test.js",
+		"build": "pnpm shx rm -rf out && pnpm tsc",
+		"build:pub": "pnpm shx rm -rf out && pnpm tsc --sourceMap false",
+		"build:watch": "pnpm shx rm -rf out && pnpm tsc --watch",
+		"lint": "pnpm xo",
+		"lint:fix": "pnpm xo --fix",
+		"release:major": "pnpm release-it --increment=major",
+		"release:minor": "pnpm release-it --increment=minor",
+		"release:patch": "pnpm release-it --increment=patch"
+	},
+	"author": "Mopsgamer",
+	"license": "ISC",
+	"main": "./out/src/index.js",
+	"files": [
+		"out/src"
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Mopsgamer/template-npm-pub-ts.git"
+	},
+	"bugs": {
+		"url": "https://github.com/Mopsgamer/template-npm-pub-ts/issues"
+	},
+	"homepage": "https://github.com/Mopsgamer/template-npm-pub-ts",
+	"release-it": {
+		"hooks": {
+			"before:init": "pnpm prerelease"
+		},
+		"plugins": {
+			"@release-it/keep-a-changelog": {
+				"filename": "CHANGELOG.md"
+			}
+		},
+		"github": {
+			"release": true,
+			"draft": false,
+			"releaseName": "${version}"
+		},
+		"npm": {
+			"publish": true
+		}
+	},
+	"xo": {
+		"ignores": "/out/",
+		"rules": {
+			"@typescript-eslint/promise-function-async": "off",
+			"@typescript-eslint/use-unknown-in-catch-callback-variable": "off",
+			"@typescript-eslint/no-unused-vars": "error",
+			"n/no-unpublished-bin": "off",
+			"linebreak-style": [
+				"error",
+				"unix"
+			]
+		}
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"directories": {
+		"lib": "out/src"
+	},
+	"dependencies": {
+		"tslib": "^2.7.0"
+	},
+	"devDependencies": {
+		"@release-it/keep-a-changelog": "^5.0.0",
+		"@types/mocha": "^10.0.7",
+		"@types/node": "^20.16.5",
+		"globals": "^15.9.0",
+		"mocha": "^10.7.3",
+		"release-it": "^17.6.0",
+		"shx": "^0.3.4",
+		"typescript": "^5.6.2",
+		"xo": "^0.59.3"
+	},
+	"keywords": []
+}

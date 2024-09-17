@@ -1,0 +1,7 @@
+{
+	"recommendations": [
+		"samverschueren.linter-xo",
+		"hbenl.vscode-mocha-test-adapter",
+		"hbenl.vscode-test-explorer"
+	]
+}

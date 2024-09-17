@@ -1,0 +1,86 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"icon": {
+				"id": "versions",
+				"color": "terminal.ansiRed"
+			},
+			"type": "npm",
+			"script": "release:major",
+			"label": "Release major - any backward incompatible changes",
+			"detail": "pnpm release-it --increment=major"
+		},
+		{
+			"icon": {
+				"id": "versions",
+				"color": "terminal.ansiYellow"
+			},
+			"type": "npm",
+			"script": "release:minor",
+			"label": "Release minor - any new public functionality or deprecation",
+			"detail": "pnpm release-it --increment=minor"
+		},
+		{
+			"icon": {
+				"id": "versions",
+				"color": "terminal.ansiGreen"
+			},
+			"type": "npm",
+			"script": "release:patch",
+			"label": "Release patch - any backward compatible bug fixes",
+			"detail": "pnpm release-it --increment=patch"
+		},
+		{
+			"icon": {
+				"id": "package",
+				"color": "terminal.ansiWhite"
+			},
+			"type": "npm",
+			"script": "build",
+			"label": "Build",
+			"detail": "pnpm shx rm -rf out && pnpm tsc"
+		},
+		{
+			"icon": {
+				"id": "package",
+				"color": "terminal.ansiWhite"
+			},
+			"problemMatcher": "$tsc-watch",
+			"type": "npm",
+			"script": "build:watch",
+			"label": "Build & Watch",
+			"detail": "pnpm shx rm -rf out && pnpm tsc --watch"
+		},
+		{
+			"icon": {
+				"id": "sparkle",
+				"color": "terminal.ansiWhite"
+			},
+			"type": "npm",
+			"script": "lint",
+			"label": "Lint",
+			"detail": "pnpm xo"
+		},
+		{
+			"icon": {
+				"id": "sparkle",
+				"color": "terminal.ansiWhite"
+			},
+			"type": "npm",
+			"script": "lint:fix",
+			"label": "Lint and fix",
+			"detail": "pnpm xo --fix"
+		},
+		{
+			"icon": {
+				"id": "check-all",
+				"color": "terminal.ansiWhite"
+			},
+			"type": "npm",
+			"script": "test",
+			"label": "Test",
+			"detail": "pnpm mocha --require tsx ./test/**/*.test.ts"
+		},
+	]
+}
