@@ -1,21 +1,28 @@
-# template
+# nf-util
 
-[![npm version](https://badge.fury.io/js/<your-package-name>.svg)](https://www.npmjs.com/package/<your-package-name>)
+[![npm version](https://badge.fury.io/js/nf-util.svg)](https://www.npmjs.com/package/nf-util)
 
-> Don't forget to configure the keywords and files in 'package.json', reinitialize the package using 'npm init', and specify the paths in 'tsconfig.json' and 'eslint.config.mjs'.
-
-...Description...
+Nerd Fonts mappings and utilities.
 
 ## Features
 
-...Features...
+ - [ ] Get a glyph by name.
+ - [ ] Get a file icon by the file name.
 
 ## Install
 
 ```bash
-npm i ...
+npm i nf-util
 ```
 
 ## Usage
 
-...Usage or API...
+```js
+import nf from "nf-util";
+
+const file = 'example/index.js';
+const icon = nf.fileIcon(file);
+
+console.log(`${icon} ${file}`);
+//  example/index.js
+```
