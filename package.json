@@ -1,5 +1,5 @@
 {
-	"name": "nf-util",
+	"name": "@m234/nf",
 	"version": "0.0.1",
 	"description": "Template repo for creating public packages written in typescript. Lintable, testable and releasable.",
 	"type": "module",
@@ -24,12 +24,12 @@
 	],
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/Mopsgamer/nf-util.git"
+		"url": "https://github.com/Mopsgamer/nerd-fonts.git"
 	},
 	"bugs": {
-		"url": "https://github.com/Mopsgamer/nf-util/issues"
+		"url": "https://github.com/Mopsgamer/nerd-fonts/issues"
 	},
-	"homepage": "https://github.com/Mopsgamer/nf-util",
+	"homepage": "https://github.com/Mopsgamer/nerd-fonts",
 	"release-it": {
 		"hooks": {
 			"before:init": "pnpm prerelease"
