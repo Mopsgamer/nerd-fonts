@@ -1,6 +1,9 @@
+import {byExtensionSeti, byPartialSeti} from './by-file-extension.js';
 import {type GlyphIcon} from './glyphicon.js';
+import {type IconsCollectionFileSupported} from './icons-collection.js';
+import {type Mapping} from './index.js';
 
-const setiCollection = {
+const collectionSeti_ = {
 	'nf-seti-apple': {
 		char: '\uE635',
 	},
@@ -504,9 +507,18 @@ const setiCollection = {
 	},
 } as const;
 
-export const byNameSeti: Record<keyof typeof setiCollection, GlyphIcon> = setiCollection;
+export const collectionSeti: Record<keyof typeof collectionSeti_, GlyphIcon> = collectionSeti_;
 
-const byName = {
-	...byNameSeti,
+export const mappings: Record<IconsCollectionFileSupported, Mapping> = {
+	seti: {
+		byPartial: byPartialSeti,
+		byExtension: byExtensionSeti,
+		byDefault: collectionSeti['nf-seti-text'],
+	},
 };
-export default byName;
+
+const collection = {
+	...collectionSeti,
+};
+
+export default collection;

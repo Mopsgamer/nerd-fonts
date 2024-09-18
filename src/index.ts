@@ -1,12 +1,32 @@
 import {parse, type ParsedPath} from 'node:path';
-import byFileExtension from './by-file-extension.js';
 import {type GlyphIcon} from './glyphicon.js';
-import {type IconsCollectionFileSupported} from './icons-collection.js';
-import byName from './by-name.js';
 
-export function fileIcon(collection: IconsCollectionFileSupported, parsed: ParsedPath): GlyphIcon;
-export function fileIcon(collection: IconsCollectionFileSupported, filePath: string): GlyphIcon;
-export function fileIcon(collection: IconsCollectionFileSupported, argument1: ParsedPath | string): GlyphIcon {
-	const extension = typeof argument1 === 'string' ? parse(argument1) : argument1.ext;
-	return byFileExtension[extension] ?? byName['nf-seti-default'];
+export type Mapping = {
+	byPartial: Record<string, GlyphIcon>;
+	byExtension: Record<string, GlyphIcon>;
+	byDefault: GlyphIcon;
+};
+
+export type FileIconOptions = {
+	mapping: Mapping;
+};
+
+export function fileIcon(parsed: ParsedPath, options: FileIconOptions): GlyphIcon;
+export function fileIcon(filePath: string, options: FileIconOptions): GlyphIcon;
+export function fileIcon(argument1: ParsedPath | string, options: FileIconOptions): GlyphIcon {
+	const {mapping} = options;
+	const parsed = typeof argument1 === 'string' ? parse(argument1) : argument1;
+	const {ext, base} = parsed;
+	const foundExtension: GlyphIcon | undefined = mapping.byExtension[ext];
+	if (foundExtension) {
+		return foundExtension;
+	}
+
+	const foundPartial = Object.entries(mapping.byPartial).find(([key]) => base.includes(key));
+	if (foundPartial) {
+		const [, glyphicon] = foundPartial;
+		return glyphicon;
+	}
+
+	return mapping.byDefault;
 }
