@@ -20,7 +20,8 @@
 	"license": "ISC",
 	"main": "./out/src/index.js",
 	"files": [
-		"out/src"
+		"out/src",
+		"mappings*.json"
 	],
 	"repository": {
 		"type": "git",
