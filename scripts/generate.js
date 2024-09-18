@@ -7,6 +7,10 @@ console.log(`fetching icons... ${uri}`);
 const request = await fetch(uri);
 const csstext = await request.text();
 const matches = Array.from(csstext.matchAll(/\.nf-[^:.\s,()]+:before{content:"[^"]+"}/g));
+const nfmeta = {
+	version: csstext.match(/(?<=Version: )\S+/)[0],
+	website: csstext.match(/(?<=Website: )\S+/)[0],
+}
 /** @type {Record<string, number>} */
 const object = {};
 console.log(`${matches.length} icons`);
@@ -20,6 +24,9 @@ for (const [element] of matches) {
 	object[classname] = Number('0x' + charHexCode);
 }
 
+const distinationMeta = path.join(process.cwd(), 'mappings-meta.json')
+console.log(`writing... ${distinationMeta}`)
+await fs.writeFile(distinationMeta, JSON.stringify(nfmeta, null, '\t'));
 const distination = path.join(process.cwd(), 'mappings.json')
 console.log(`writing... ${distination}`)
 await fs.writeFile(distination, JSON.stringify(object, null, '\t'));

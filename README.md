@@ -45,6 +45,7 @@ import chalk from "chalk";
 const file = 'example/index.js';
 const icon = nf.FSC.fromPath(file, nf.FSC.mappings.seti);
 
-console.log(`Icon ${chalk.hex(icon.color.toString(16) ?? '#ffffff')(icon.char)} for ${file}`);
+const colorHex = icon.color.toString(16) ?? '#ffffff'
+console.log(`Icon ${chalk.hex(colorHex)(icon.char)} for ${file}`);
 // Icon  for example/index.js
 ```
