@@ -6,8 +6,9 @@ Nerd Fonts mappings and utilities.
 
 ## Features
 
- - Get nf icon by css class name: 10K+ icons.
- - Get file icon by file name: give file path
+ - Get Nerd Fonts icons by css class names: 10K+ icons.
+ - Give a file path or a parsed object - get icon. Seti theme support with colors.
+ - Built-in typescript declarations.
 
 ## Install
 
