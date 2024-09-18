@@ -20,11 +20,30 @@ npm i nf-util
 ```js
 import nf from "nf-util";
 
-const file = 'example/index.js';
-const icon = nf.getFileIcon(file, nf.mappings.seti);
+console.log(`Weather: ${nf.icons['nf-md-weather_lightning'].char}`);
+// Weather: 󰖓
+```
 
-console.log(`Icon ${icon} for ${file}`);
+```js
+import nf from "nf-util";
+
+const file = 'example/index.js';
+const icon = nf.FSC.fromPath(file, nf.FSC.mappings.seti);
+
+console.log(`Icon ${icon.char} for ${file}`);
 // Icon  for example/index.js
 console.log(`Done. ${nf.icons['nf-md-weather_lightning'].char}`);
 // Done. 󰖓
+```
+
+Colored
+```js
+import nf from "nf-util";
+import chalk from "chalk";
+
+const file = 'example/index.js';
+const icon = nf.FSC.fromPath(file, nf.FSC.mappings.seti);
+
+console.log(`Icon ${chalk.hex(icon.color.toString(16) ?? '#ffffff')(icon.char)} for ${file}`);
+// Icon  for example/index.js
 ```

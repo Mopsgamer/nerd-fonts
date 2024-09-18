@@ -1,9 +1,27 @@
 /* eslint-disable @typescript-eslint/naming-convention */
-import {colorsSeti} from './colors.js';
-import {type GlyphIconColored} from './glyphicon.js';
-import icons from './icons.js';
+/**
+ * @module FSC File system utils collection.
+ */
+import {parse, type ParsedPath} from 'node:path';
+import icons, {
+	type GlyphIcon, type Mapping, type IconsCollection,
+} from './icons.js';
 
-const fileExtensionSeti: Record<string, GlyphIconColored> = {
+export const colorsSeti = {
+	blue: 0x51_9A_BA,
+	grey: 0x4D_5A_5E,
+	greyLight: 0x6D_80_86,
+	green: 0x8D_C1_49,
+	orange: 0xE3_79_33,
+	pink: 0xF5_53_85,
+	purple: 0xA0_74_C4,
+	red: 0xCC_3E_44,
+	white: 0xD4_D7_D6,
+	yellow: 0xCB_CB_41,
+	ignore: 0x41_53_5B,
+} as const;
+
+const fileExtensionSeti: Record<string, GlyphIcon> = {
 	'.bsl': {...icons['nf-seti-default'], color: colorsSeti.red},
 	'.mdo': {...icons['nf-seti-mdo'], color: colorsSeti.red},
 	'.cls': {...icons['nf-seti-salesforce'], color: colorsSeti.blue},
@@ -393,7 +411,7 @@ const fileExtensionSeti: Record<string, GlyphIconColored> = {
 	'npm-debug.log': {...icons['nf-seti-npm_ignored'], color: colorsSeti.ignore},
 	'.DS_Store': {...icons['nf-seti-ignored'], color: colorsSeti.ignore},
 };
-export const byPartialSeti: Record<string, GlyphIconColored> = {
+export const byPartialSeti: Record<string, GlyphIcon> = {
 	mix: {...icons['nf-seti-hex'], color: colorsSeti.red},
 	Gemfile: {...icons['nf-seti-ruby'], color: colorsSeti.red},
 	gemfile: {...icons['nf-seti-ruby'], color: colorsSeti.red},
@@ -439,4 +457,33 @@ export const byPartialSeti: Record<string, GlyphIconColored> = {
 	'TODO.md': {...icons['nf-seti-todo'], color: colorsSeti.blue},
 };
 
-export const byExtensionSeti: Record<keyof typeof fileExtensionSeti, GlyphIconColored> = fileExtensionSeti;
+export const byExtensionSeti: Record<keyof typeof fileExtensionSeti, GlyphIcon> = fileExtensionSeti;
+
+export type IconsCollectionFileSupported = Extract<IconsCollection, 'seti'>;
+
+export const mappings: Record<IconsCollectionFileSupported, Mapping> = {
+	seti: {
+		byPartial: new Map(Object.entries(byPartialSeti)),
+		byExtension: new Map(Object.entries(byExtensionSeti)),
+		byDefault: icons['nf-seti-text'],
+	},
+};
+
+export function fromPath(parsed: ParsedPath, mapping: Mapping): GlyphIcon;
+export function fromPath(filePath: string, mapping: Mapping): GlyphIcon;
+export function fromPath(argument1: ParsedPath | string, mapping: Mapping): GlyphIcon {
+	const parsed = typeof argument1 === 'string' ? parse(argument1) : argument1;
+	const {ext, base} = parsed;
+	const foundExtension = mapping.byExtension.get(ext);
+	if (foundExtension) {
+		return foundExtension;
+	}
+
+	const foundPartial = Array.from(mapping.byPartial.entries()).find(([key]) => base.includes(key));
+	if (foundPartial) {
+		const [, glyphicon] = foundPartial;
+		return glyphicon;
+	}
+
+	return mapping.byDefault;
+}
