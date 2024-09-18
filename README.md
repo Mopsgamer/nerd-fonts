@@ -1,6 +1,6 @@
 # @m234/nerd-fonts
 
-[![npm version](https://badge.fury.io/js/@m234/nerd-fonts.svg)](https://www.npmjs.com/package/@m234/nerd-fonts)
+[![npm version](https://badge.fury.io/js/@m234%2Fnerd-fonts.svg)](https://www.npmjs.com/package/@m234/nerd-fonts)
 
 Nerd Fonts mappings and utilities.
 
