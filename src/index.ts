@@ -1,28 +1,23 @@
 import {parse, type ParsedPath} from 'node:path';
 import {type GlyphIcon} from './glyphicon.js';
+import {type Mapping} from './icons.js';
 
-export type Mapping = {
-	byPartial: Record<string, GlyphIcon>;
-	byExtension: Record<string, GlyphIcon>;
-	byDefault: GlyphIcon;
-};
+export * from './glyphicon.js';
+export * from './colors.js';
+export * from './icons.js';
+export * from './file-icons.js';
 
-export type FileIconOptions = {
-	mapping: Mapping;
-};
-
-export function fileIcon(parsed: ParsedPath, options: FileIconOptions): GlyphIcon;
-export function fileIcon(filePath: string, options: FileIconOptions): GlyphIcon;
-export function fileIcon(argument1: ParsedPath | string, options: FileIconOptions): GlyphIcon {
-	const {mapping} = options;
+export function getFileIcon(parsed: ParsedPath, mapping: Mapping): GlyphIcon;
+export function getFileIcon(filePath: string, mapping: Mapping): GlyphIcon;
+export function getFileIcon(argument1: ParsedPath | string, mapping: Mapping): GlyphIcon {
 	const parsed = typeof argument1 === 'string' ? parse(argument1) : argument1;
 	const {ext, base} = parsed;
-	const foundExtension: GlyphIcon | undefined = mapping.byExtension[ext];
+	const foundExtension = mapping.byExtension.get(ext);
 	if (foundExtension) {
 		return foundExtension;
 	}
 
-	const foundPartial = Object.entries(mapping.byPartial).find(([key]) => base.includes(key));
+	const foundPartial = Array.from(mapping.byPartial.entries()).find(([key]) => base.includes(key));
 	if (foundPartial) {
 		const [, glyphicon] = foundPartial;
 		return glyphicon;

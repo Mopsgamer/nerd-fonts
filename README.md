@@ -4,12 +4,10 @@
 
 Nerd Fonts mappings and utilities.
 
-## Roadmap
+## Features
 
- - [x] Get a glyph by name: 10417 icons.
- - [ ] Get a file icon by the file name (Seti).
-     - [x] Characters.
-     - [ ] Colors.
+ - Get nf icon by css class name: 10K+ icons.
+ - Get file icon by file name: give file path
 
 ## Install
 
@@ -23,8 +21,10 @@ npm i nf-util
 import nf from "nf-util";
 
 const file = 'example/index.js';
-const icon = nf.fileIcon(file);
+const icon = nf.getFileIcon(file, nf.mappings.seti);
 
-console.log(`${icon} ${file}`);
-//  example/index.js
+console.log(`Icon ${icon} for ${file}`);
+// Icon  for example/index.js
+console.log(`Done. ${nf.icons['nf-md-weather_lightning'].char}`);
+// Done. 󰖓
 ```
