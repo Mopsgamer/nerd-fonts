@@ -487,12 +487,12 @@ export const mappings: Record<IconsCollectionFileSupported, Mapping> = {
 /**
  * Get an icon for a file/folder path or parsed object of this path.
  */
-export function fromPath(parsed: Pick<ParsedPath, 'ext' | 'base'>, mapping: Mapping): NerdIcon;
+export function fromPath(parsed: Pick<ParsedPath, 'base'>, mapping: Mapping): NerdIcon;
 export function fromPath(filePath: string, mapping: Mapping): NerdIcon;
-export function fromPath(argument1: Pick<ParsedPath, 'ext' | 'base'> | string, mapping: Mapping): NerdIcon {
+export function fromPath(argument1: Pick<ParsedPath, 'base'> | string, mapping: Mapping): NerdIcon {
 	const parsed = typeof argument1 === 'string' ? parse(argument1) : argument1;
-	const {ext, base} = parsed;
-	const foundExtension = mapping.byExtension.get(ext);
+	const {base} = parsed;
+	const foundExtension = mapping.byExtension.get(base.slice(base.indexOf('.')));
 	if (foundExtension) {
 		return foundExtension;
 	}
