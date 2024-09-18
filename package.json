@@ -4,6 +4,7 @@
 	"description": "Template repo for creating public packages written in typescript. Lintable, testable and releasable.",
 	"type": "module",
 	"scripts": {
+		"generate": "node ./scripts/generate.js",
 		"prerelease": "pnpm lint && pnpm build:pub && pnpm test",
 		"test": "pnpm mocha ./out/test/**/*.test.js",
 		"build": "pnpm shx rm -rf out && pnpm tsc",
@@ -48,7 +49,7 @@
 		}
 	},
 	"xo": {
-		"ignores": "/out/",
+		"ignores": ["/out/", "/scripts/"],
 		"rules": {
 			"@typescript-eslint/promise-function-async": "off",
 			"@typescript-eslint/use-unknown-in-catch-callback-variable": "off",
