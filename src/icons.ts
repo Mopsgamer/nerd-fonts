@@ -1,10 +1,16 @@
 import mappingsJSON from '../mappings.json' with {type: 'json'};
 
-export type GlyphIcon = {
+/**
+ * Contains Nerd Fonts icon.
+ */
+export type NerdIcon = {
 	/**
      * Glyph character.
      */
 	char: string;
+	/**
+     * Glyph character as a hex number.
+     */
 	hexCode: number;
 	/**
 	 * The icon's color.
@@ -12,19 +18,23 @@ export type GlyphIcon = {
 	color?: number;
 };
 
+/**
+ * Determines how the icon for a file/folder path will be calculated.
+ */
 export type Mapping = {
-	byPartial: Map<string, GlyphIcon>;
-	byExtension: Map<string, GlyphIcon>;
-	byDefault: GlyphIcon;
+	byPartial: Map<string, NerdIcon>;
+	byExtension: Map<string, NerdIcon>;
+	byDefault: NerdIcon;
 };
 
-export type IconsCollection = 'seti';
-
+/**
+ * Contains all Nerd Fonts icons.
+ */
 export const icons = Object.fromEntries(Object.entries(mappingsJSON).map(
 	([classname, charHex]) => ([classname, {
 		char: String.fromCodePoint(charHex),
 		hexCode: charHex,
-	} satisfies GlyphIcon]),
-)) as Record<keyof typeof mappingsJSON, GlyphIcon>;
+	} satisfies NerdIcon]),
+)) as Record<keyof typeof mappingsJSON, NerdIcon>;
 
 export default icons;

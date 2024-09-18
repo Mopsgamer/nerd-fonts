@@ -1,12 +1,16 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 /**
- * @module FSC File system utils collection.
+ * File system utils collection.
+ * @namespace FSC
  */
 import {parse, type ParsedPath} from 'node:path';
 import icons, {
-	type GlyphIcon, type Mapping, type IconsCollection,
+	type NerdIcon, type Mapping,
 } from './icons.js';
 
+/**
+ * These colors are used to color the files.
+ */
 export const colorsSeti = {
 	blue: 0x51_9A_BA,
 	grey: 0x4D_5A_5E,
@@ -21,7 +25,10 @@ export const colorsSeti = {
 	ignore: 0x41_53_5B,
 } as const;
 
-const fileExtensionSeti: Record<string, GlyphIcon> = {
+/**
+ * Depending on the file extension, the icon and color will be selected.
+ */
+export const byExtensionSeti: Record<string, NerdIcon> = {
 	'.bsl': {...icons['nf-seti-default'], color: colorsSeti.red},
 	'.mdo': {...icons['nf-seti-mdo'], color: colorsSeti.red},
 	'.cls': {...icons['nf-seti-salesforce'], color: colorsSeti.blue},
@@ -411,7 +418,10 @@ const fileExtensionSeti: Record<string, GlyphIcon> = {
 	'npm-debug.log': {...icons['nf-seti-npm_ignored'], color: colorsSeti.ignore},
 	'.DS_Store': {...icons['nf-seti-ignored'], color: colorsSeti.ignore},
 };
-export const byPartialSeti: Record<string, GlyphIcon> = {
+/**
+ * Depending on the partial file base, the icon and color will be selected.
+ */
+export const byPartialSeti: Record<string, NerdIcon> = {
 	mix: {...icons['nf-seti-hex'], color: colorsSeti.red},
 	Gemfile: {...icons['nf-seti-ruby'], color: colorsSeti.red},
 	gemfile: {...icons['nf-seti-ruby'], color: colorsSeti.red},
@@ -457,10 +467,15 @@ export const byPartialSeti: Record<string, GlyphIcon> = {
 	'TODO.md': {...icons['nf-seti-todo'], color: colorsSeti.blue},
 };
 
-export const byExtensionSeti: Record<keyof typeof fileExtensionSeti, GlyphIcon> = fileExtensionSeti;
+/**
+ * Supported icon collection for file mappings.
+ * @see {@link mappings}
+ */
+export type IconsCollectionFileSupported = 'seti';
 
-export type IconsCollectionFileSupported = Extract<IconsCollection, 'seti'>;
-
+/**
+ * Can be used within {@link fromPath} function.
+ */
 export const mappings: Record<IconsCollectionFileSupported, Mapping> = {
 	seti: {
 		byPartial: new Map(Object.entries(byPartialSeti)),
@@ -469,9 +484,12 @@ export const mappings: Record<IconsCollectionFileSupported, Mapping> = {
 	},
 };
 
-export function fromPath(parsed: ParsedPath, mapping: Mapping): GlyphIcon;
-export function fromPath(filePath: string, mapping: Mapping): GlyphIcon;
-export function fromPath(argument1: ParsedPath | string, mapping: Mapping): GlyphIcon {
+/**
+ * Get an icon for a file/folder path or parsed object of this path.
+ */
+export function fromPath(parsed: Pick<ParsedPath, 'ext' | 'base'>, mapping: Mapping): NerdIcon;
+export function fromPath(filePath: string, mapping: Mapping): NerdIcon;
+export function fromPath(argument1: Pick<ParsedPath, 'ext' | 'base'> | string, mapping: Mapping): NerdIcon {
 	const parsed = typeof argument1 === 'string' ? parse(argument1) : argument1;
 	const {ext, base} = parsed;
 	const foundExtension = mapping.byExtension.get(ext);
