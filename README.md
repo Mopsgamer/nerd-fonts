@@ -1,6 +1,6 @@
-# @m234/nf
+# @m234/nerd-fonts
 
-[![npm version](https://badge.fury.io/js/@m234/nf.svg)](https://www.npmjs.com/package/@m234/nf)
+[![npm version](https://badge.fury.io/js/@m234/nerd-fonts.svg)](https://www.npmjs.com/package/@m234/nerd-fonts)
 
 Nerd Fonts mappings and utilities.
 
@@ -13,20 +13,20 @@ Nerd Fonts mappings and utilities.
 ## Install
 
 ```bash
-npm i @m234/nf
+npm i @m234/nerd-fonts
 ```
 
 ## Usage
 
 ```js
-import nf from "@m234/nf";
+import nf from "@m234/nerd-fonts";
 
 console.log(`Weather: ${nf.icons['nf-md-weather_lightning'].char}`);
 // Weather: 󰖓
 ```
 
 ```js
-import nf from "@m234/nf";
+import nf from "@m234/nerd-fonts";
 
 const file = 'example/index.js';
 const icon = nf.FSC.fromPath(file, nf.FSC.mappings.seti);
@@ -39,7 +39,7 @@ console.log(`Done. ${nf.icons['nf-md-weather_lightning'].char}`);
 
 Colored
 ```js
-import nf from "@m234/nf";
+import nf from "@m234/nerd-fonts";
 import chalk from "chalk";
 
 const file = 'example/index.js';

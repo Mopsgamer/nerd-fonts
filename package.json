@@ -1,7 +1,7 @@
 {
-	"name": "@m234/nf",
+	"name": "@m234/nerd-fonts",
 	"version": "0.0.1",
-	"description": "Template repo for creating public packages written in typescript. Lintable, testable and releasable.",
+	"description": "Nerd Fonts mappings and utilities.",
 	"type": "module",
 	"scripts": {
 		"generate": "node ./scripts/generate.js",
