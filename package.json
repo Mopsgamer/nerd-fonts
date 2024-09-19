@@ -1,6 +1,6 @@
 {
 	"name": "@m234/nerd-fonts",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"description": "Nerd Fonts mappings and utilities.",
 	"type": "module",
 	"scripts": {
