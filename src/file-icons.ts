@@ -494,13 +494,26 @@ export function fromPath(argument1: Pick<ParsedPath, 'base'> | string, mapping: 
 	const {base} = parsed;
 
 	const foundBase = mapping.byBase?.get(base);
-	if (foundBase) {
+	if (foundBase !== undefined) {
 		return foundBase;
 	}
 
-	const foundExtension = mapping.byExtension?.get(base.slice(base.indexOf('.')));
-	if (foundExtension) {
-		return foundExtension;
+	let baseDot = base.indexOf('.');
+	if (baseDot >= 0) {
+		let extension = base.slice(baseDot);
+		for (;;) {
+			const foundExtension = mapping.byExtension?.get(extension);
+			if (foundExtension) {
+				return foundExtension;
+			}
+
+			baseDot = extension.indexOf('.', 1);
+			if (baseDot === -1) {
+				break;
+			}
+
+			extension = extension.slice(baseDot);
+		}
 	}
 
 	return mapping.byDefault;
