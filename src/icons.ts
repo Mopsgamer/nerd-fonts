@@ -22,8 +22,8 @@ export type NerdIcon = {
  * Determines how the icon for a file/folder path will be calculated.
  */
 export type Mapping = {
-	byPartial: Map<string, NerdIcon>;
-	byExtension: Map<string, NerdIcon>;
+	byBase?: Map<string, NerdIcon>;
+	byExtension?: Map<string, NerdIcon>;
 	byDefault: NerdIcon;
 };
 

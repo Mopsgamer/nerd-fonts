@@ -13,3 +13,7 @@ it('.gitignore', () => {
 it('LICENSE', () => {
 	assert.strictEqual(fromPath('LICENSE', mappings.seti).char, icons['nf-seti-license'].char);
 });
+
+it('LICENSE.txt', () => {
+	assert.strictEqual(fromPath('LICENSE.txt', mappings.seti).char, icons['nf-seti-license'].char);
+});

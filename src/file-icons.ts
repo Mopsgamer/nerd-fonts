@@ -419,9 +419,9 @@ export const byExtensionSeti: Record<string, NerdIcon> = {
 	'.DS_Store': {...icons['nf-seti-ignored'], color: colorsSeti.ignore},
 };
 /**
- * Depending on the partial file base, the icon and color will be selected.
+ * Depending on the file base, the icon and color will be selected.
  */
-export const byPartialSeti: Record<string, NerdIcon> = {
+export const byBaseSeti: Record<string, NerdIcon> = {
 	mix: {...icons['nf-seti-hex'], color: colorsSeti.red},
 	Gemfile: {...icons['nf-seti-ruby'], color: colorsSeti.red},
 	gemfile: {...icons['nf-seti-ruby'], color: colorsSeti.red},
@@ -478,7 +478,7 @@ export type IconsCollectionFileSupported = 'seti';
  */
 export const mappings: Record<IconsCollectionFileSupported, Mapping> = {
 	seti: {
-		byPartial: new Map(Object.entries(byPartialSeti)),
+		byBase: new Map(Object.entries(byBaseSeti)),
 		byExtension: new Map(Object.entries(byExtensionSeti)),
 		byDefault: icons['nf-seti-text'],
 	},
@@ -492,15 +492,15 @@ export function fromPath(filePath: string, mapping: Mapping): NerdIcon;
 export function fromPath(argument1: Pick<ParsedPath, 'base'> | string, mapping: Mapping): NerdIcon {
 	const parsed = typeof argument1 === 'string' ? parse(argument1) : argument1;
 	const {base} = parsed;
-	const foundExtension = mapping.byExtension.get(base.slice(base.indexOf('.')));
-	if (foundExtension) {
-		return foundExtension;
+
+	const foundBase = mapping.byBase?.get(base);
+	if (foundBase) {
+		return foundBase;
 	}
 
-	const foundPartial = Array.from(mapping.byPartial.entries()).find(([key]) => base.includes(key));
-	if (foundPartial) {
-		const [, glyphicon] = foundPartial;
-		return glyphicon;
+	const foundExtension = mapping.byExtension?.get(base.slice(base.indexOf('.')));
+	if (foundExtension) {
+		return foundExtension;
 	}
 
 	return mapping.byDefault;
