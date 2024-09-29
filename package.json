@@ -1,7 +1,7 @@
 {
 	"name": "@m234/nerd-fonts",
 	"version": "0.1.1",
-	"description": "Nerd Fonts mappings and utilities.",
+	"description": "Get Nerd Fonts glyph icon character using a CSS class name or a file path with an extension.",
 	"type": "module",
 	"scripts": {
 		"generate": "node ./scripts/generate.js",

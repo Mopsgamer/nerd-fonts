@@ -1,6 +1,8 @@
-import nfMeta_ from '../mappings-meta.json' with {type: 'json'};
+import {createRequire} from 'node:module';
 
-// eslint-disable-next-line unicorn/prefer-export-from
-export const nfMeta = nfMeta_;
+const require = createRequire(import.meta.url);
+const mappingsJsonMeta = require('../mappings.json') as typeof import('../mappings.json'); // eslint-disable-line @typescript-eslint/consistent-type-imports
+
+export const nfMeta = mappingsJsonMeta;
 export * from './icons.js';
 export * as FSC from './file-icons.js';
