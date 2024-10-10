@@ -1,8 +1,5 @@
 /* eslint-disable @typescript-eslint/naming-convention */
-/**
- * File system utils collection.
- * @namespace FSC
- */
+
 import {parse, type ParsedPath} from 'node:path';
 import icons, {
 	type NerdIcon, type Mapping,
