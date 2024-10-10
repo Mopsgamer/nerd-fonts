@@ -1,6 +1,10 @@
 # @m234/nerd-fonts
 
-[![npm version](https://badge.fury.io/js/@m234%2Fnerd-fonts.svg)](https://www.npmjs.com/package/@m234/nerd-fonts)
+[![npm version](https://img.shields.io/npm/v/@m234/nerd-fonts.svg?style=flat)](https://www.npmjs.com/package/m234/nerd-fonts)
+[![npm downloads](https://img.shields.io/npm/dm/@m234/nerd-fonts.svg?style=flat)](https://www.npmjs.com/package/@m234/nerd-fonts)
+[![github](https://img.shields.io/github/stars/Mopsgamer/nerd-fonts.svg?style=flat
+)](https://github.com/Mopsgamer/nerd-fonts)
+[![github issues](https://img.shields.io/github/issues/Mopsgamer/nerd-fonts.svg?style=flat)](https://github.com/Mopsgamer/nerd-fonts/issues)
 
 Get Nerd Fonts glyph icon character using a CSS class name or a file path with an extension.
 

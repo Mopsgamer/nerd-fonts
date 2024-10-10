@@ -10,5 +10,6 @@
         "editor.defaultFormatter": "samverschueren.linter-xo"
     },
     "files.eol": "\n",
-    "mochaExplorer.files": "./out/test/**/*.test.js"
+    "mochaExplorer.files": "./out/test/**/*.test.js",
+    "typescript.tsdk": "node_modules/typescript/lib"
 }
