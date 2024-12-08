@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Use maps instead of objects.
 - Add exports to the `package.json`.
 - Remove Mapping and replace it with a callback or collection name.
+- Update dependencies.
 
 ## [0.1.3] - 2024-10-10
 
