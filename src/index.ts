@@ -1,4 +1,3 @@
-import * as nf from './lib.js';
-
-export * from './lib.js';
-export default nf;
+export * from './icons.js';
+export * from './fs-icons.js';
+export * from './mappings.js';

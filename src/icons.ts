@@ -1,43 +1,47 @@
-import {createRequire} from 'node:module';
+import {mappings} from './mappings.js';
 
-const require = createRequire(import.meta.url);
-const mappingsJson = require('../mappings.json') as typeof import('../mappings.json'); // eslint-disable-line @typescript-eslint/consistent-type-imports
+export type NerdClassname = keyof typeof mappings;
 
 /**
  * Contains Nerd Fonts icon.
  */
 export type NerdIcon = {
 	/**
-     * Glyph character.
+     * The characters. Sometimes we can see more than one.
      */
-	char: string;
+	value: string;
 	/**
-     * Glyph character as a hex number.
+     * The characters as a hex number.
      */
 	hexCode: number;
 	/**
-	 * The icon's color.
+	 * The hex color with hash prefix.
+	 * @example "#FFFFFF"
 	 */
-	color?: number;
-};
-
-/**
- * Determines how the icon for a file/folder path will be calculated.
- */
-export type Mapping = {
-	byBase?: Map<string, NerdIcon>;
-	byExtension?: Map<string, NerdIcon>;
-	byDefault: NerdIcon;
+	color?: string;
 };
 
 /**
  * Contains all Nerd Fonts icons.
  */
-export const icons = Object.fromEntries(Object.entries(mappingsJson).map(
-	([classname, charHex]) => ([classname, {
-		char: String.fromCodePoint(charHex),
-		hexCode: charHex,
-	} satisfies NerdIcon]),
-)) as Record<keyof typeof mappingsJson, NerdIcon>;
+export const iconsMap = new Map<NerdClassname, NerdIcon>();
 
-export default icons;
+for (const cn in mappings) {
+	if (!Object.hasOwn(mappings, cn)) {
+		continue;
+	}
+
+	const classname = cn as NerdClassname;
+
+	const charHex = mappings[classname];
+	const icon: NerdIcon = {
+		value: String.fromCodePoint(charHex),
+		hexCode: charHex,
+	};
+	iconsMap.set(classname, icon);
+}
+
+/**
+ * Contains all Nerd Fonts icons.
+ */
+export const icons = Object.fromEntries(iconsMap.entries()) as Record<NerdClassname, NerdIcon>;

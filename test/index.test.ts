@@ -1,27 +1,26 @@
 import assert from 'node:assert';
-import {fromPath, mappings} from '../src/file-icons.js';
-import icons from '../src/icons.js';
+import {icons, collections, fromPath} from '../src/index.js';
 
 it('file.ts', () => {
-	assert.strictEqual(fromPath('file.ts', mappings.seti).char, icons['nf-seti-typescript'].char);
+	assert.strictEqual(fromPath('file.ts', collections.seti)?.value, icons['nf-seti-typescript'].value);
 });
 
 it('file.d.ts', () => {
-	assert.strictEqual(fromPath('file.d.ts', mappings.seti).char, icons['nf-seti-typescript'].char);
+	assert.strictEqual(fromPath('file.d.ts', collections.seti)?.value, icons['nf-seti-typescript'].value);
 });
 
 it('file', () => {
-	assert.strictEqual(fromPath('file', mappings.seti).char, icons['nf-seti-text'].char);
+	assert.strictEqual(fromPath('file', collections.seti)?.value, icons['nf-seti-text'].value);
 });
 
 it('.gitignore', () => {
-	assert.strictEqual(fromPath('.gitignore', mappings.seti).char, icons['nf-seti-git_ignore'].char);
+	assert.strictEqual(fromPath('.gitignore', collections.seti)?.value, icons['nf-seti-git_ignore'].value);
 });
 
 it('LICENSE', () => {
-	assert.strictEqual(fromPath('LICENSE', mappings.seti).char, icons['nf-seti-license'].char);
+	assert.strictEqual(fromPath('LICENSE', collections.seti)?.value, icons['nf-seti-license'].value);
 });
 
 it('LICENSE.txt', () => {
-	assert.strictEqual(fromPath('LICENSE.txt', mappings.seti).char, icons['nf-seti-license'].char);
+	assert.strictEqual(fromPath('LICENSE.txt', collections.seti)?.value, icons['nf-seti-license'].value);
 });

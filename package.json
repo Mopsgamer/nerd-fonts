@@ -71,6 +71,12 @@
 	"directories": {
 		"lib": "out/src"
 	},
+	"exports": {
+		".": "./out/src/index.ts",
+		"./icons": "./out/src/icons.ts",
+		"./fs": "./out/src/file-icons.ts",
+		"./mappings": "./out/src/mappings.ts"
+	},
 	"dependencies": {
 		"tslib": "^2.7.0"
 	},

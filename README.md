@@ -13,6 +13,8 @@ Get Nerd Fonts glyph icon character using a CSS class name or a file path with a
  - Get Nerd Fonts icons by css class names: 10K+ icons.
  - Give a file path or a parsed object - get icon. Seti theme support with colors.
  - Built-in typescript declarations.
+ - NF meta and version included.
+ - Submodule exports.
 
 ## Install
 
@@ -22,21 +24,32 @@ npm i @m234/nerd-fonts
 
 ## Usage
 
+Import:
 ```js
-import nf from "@m234/nerd-fonts";
-import chalk from "chalk";
+import * as nf from "@m234/nerd-fonts";
+```
 
-// # Class-name icon
+Get an icon by class name:
+```js
 const icon = nf.icons['nf-md-weather_lightning']
-console.log(`Weather: ${icon.char}`); // Weather: 󰖓
+console.log(`Weather: ${icon.value}`);
+// >> Weather: 󰖓
+```
 
-// # File icon (seti)
+Get an icon by file path:
+```js
 const file = 'example/index.js';
-const ficon = nf.FSC.fromPath(file, nf.FSC.mappings.seti);
-console.log(`Icon ${ficon.char} for ${file}`); // Icon  for example/index.js
+const ficon = nf.fromPath(file, 'seti');
+console.log(`Icon ${ficon.value} for ${file}`);
+// >> Icon  for example/index.js
+```
 
-// # Colored
-const colorHex = ficon.color.toString(16)
-const colorize = chalk.hex(colorHex)
-console.log(`Icon ${colorize(ficon.char)} for ${file}`); // Icon  for example/index.js
+Colors:
+```js
+import chalk from "chalk";
+const file = 'example/index.js';
+const ficon = nf.fromPath(file, 'seti');
+const colorize = chalk.hex(ficon.color)
+console.log(`Icon ${colorize(ficon.value)} for ${file}`);
+// >> Icon  for example/index.js
 ```
