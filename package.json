@@ -72,23 +72,23 @@
 		"lib": "out/src"
 	},
 	"exports": {
-		".": "./out/src/index.ts",
-		"./icons": "./out/src/icons.ts",
-		"./fs": "./out/src/file-icons.ts",
-		"./mappings": "./out/src/mappings.ts"
+		".": "./out/src/index.js",
+		"./icons": "./out/src/icons.js",
+		"./fs": "./out/src/file-icons.js",
+		"./mappings": "./out/src/mappings.js"
 	},
 	"dependencies": {
 		"tslib": "^2.8.1"
 	},
 	"devDependencies": {
-		"@release-it/keep-a-changelog": "^5.0.0",
+		"@release-it/keep-a-changelog": "^6.0.0",
 		"@types/mocha": "^10.0.10",
-		"@types/node": "^22.10.1",
-		"globals": "^15.13.0",
+		"@types/node": "^22.10.5",
+		"globals": "^15.14.0",
 		"mocha": "^11.0.1",
-		"release-it": "^17.10.0",
+		"release-it": "^18.1.1",
 		"shx": "^0.3.4",
-		"typescript": "^5.7.2",
+		"typescript": "^5.7.3",
 		"xo": "^0.60.0"
 	},
 	"keywords": [
