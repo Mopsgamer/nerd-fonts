@@ -1,6 +1,6 @@
 # @m234/nerd-fonts
 
-[![npm version](https://img.shields.io/npm/v/@m234/nerd-fonts.svg?style=flat)](https://www.npmjs.com/package/m234/nerd-fonts)
+[![npm version](https://img.shields.io/npm/v/@m234/nerd-fonts.svg?style=flat)](https://www.npmjs.com/package/@m234/nerd-fonts)
 [![npm downloads](https://img.shields.io/npm/dm/@m234/nerd-fonts.svg?style=flat)](https://www.npmjs.com/package/@m234/nerd-fonts)
 [![github](https://img.shields.io/github/stars/Mopsgamer/nerd-fonts.svg?style=flat
 )](https://github.com/Mopsgamer/nerd-fonts)
