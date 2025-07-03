@@ -1,5 +1,6 @@
 import assert from 'node:assert';
-import {icons, collections, fromPath} from '../src/index.js';
+import {icons, collections, fromPath} from '../index.js';
+import {it} from "node:test";
 
 it('file.ts', () => {
 	assert.strictEqual(fromPath('file.ts', collections.seti)?.value, icons['nf-seti-typescript'].value);

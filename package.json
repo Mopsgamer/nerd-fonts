@@ -4,24 +4,25 @@
 	"description": "Get Nerd Fonts glyph icon character using a CSS class name or a file path with an extension.",
 	"type": "module",
 	"scripts": {
-		"generate": "node ./scripts/generate.js",
-		"prerelease": "pnpm lint && pnpm build:pub && pnpm test",
-		"test": "pnpm mocha ./out/test/**/*.test.js",
-		"build": "pnpm shx rm -rf out && pnpm tsc",
-		"build:pub": "pnpm shx rm -rf out && pnpm tsc --sourceMap false",
-		"build:watch": "pnpm shx rm -rf out && pnpm tsc --watch",
-		"lint": "pnpm xo",
-		"lint:fix": "pnpm xo --fix",
-		"release:major": "pnpm release-it --increment=major",
-		"release:minor": "pnpm release-it --increment=minor",
-		"release:patch": "pnpm release-it --increment=patch"
+		"prerelease": "bun run lint && bun run generate && bun run build:pub && bun run test",
+		"generate": "bun run scripts/generate.ts",
+		"test": "bun run node --test out/**/*.test.js",
+		"build": "bun run build:clean && bun run tsc -p src",
+		"build:pub": "bun run build:clean && bun run tsc -p src --sourceMap false && rm **/*.test.d.ts",
+		"build:watch": "bun run build:clean && bun run tsc -p src --watch",
+		"build:clean": "rm -rf out",
+		"lint": "bun run eslint .",
+		"release:major": "bun run release-it --increment=major",
+		"release:minor": "bun run release-it --increment=minor",
+		"release:patch": "bun run release-it --increment=patch"
 	},
 	"author": "Mopsgamer",
 	"license": "ISC",
 	"main": "./out/src/index.js",
 	"files": [
-		"out/src",
-		"mappings*.json"
+		"out",
+		"mappings*.json",
+		"!**/*.test.js"
 	],
 	"repository": {
 		"type": "git",
@@ -49,47 +50,40 @@
 			"publish": true
 		}
 	},
-	"xo": {
-		"ignores": [
-			"/out/",
-			"/scripts/"
-		],
-		"rules": {
-			"@typescript-eslint/promise-function-async": "off",
-			"@typescript-eslint/use-unknown-in-catch-callback-variable": "off",
-			"@typescript-eslint/no-unused-vars": "error",
-			"n/no-unpublished-bin": "off",
-			"linebreak-style": [
-				"error",
-				"unix"
-			]
-		}
-	},
 	"publishConfig": {
 		"access": "public"
 	},
 	"directories": {
-		"lib": "out/src"
+		"lib": "out"
 	},
 	"exports": {
-		".": "./out/src/index.js",
-		"./icons": "./out/src/icons.js",
-		"./fs": "./out/src/file-icons.js",
-		"./mappings": "./out/src/mappings.js"
-	},
-	"dependencies": {
-		"tslib": "^2.8.1"
+		".": {
+			"default": "./out/index.js",
+			"types": "./out/index.d.ts"
+		},
+		"./icons": {
+			"default": "./out/icons.js",
+			"types": "./out/icons.d.ts"
+		},
+		"./fs": {
+			"default": "./out/fs-icons.js",
+			"types": "./out/fs-icons.d.ts"
+		},
+		"./mappings": {
+			"default": "./out/mappings.js",
+			"types": "./out/mappings.d.ts"
+		}
 	},
 	"devDependencies": {
-		"@release-it/keep-a-changelog": "^6.0.0",
-		"@types/mocha": "^10.0.10",
-		"@types/node": "^22.13.1",
-		"globals": "^15.14.0",
-		"mocha": "^11.1.0",
-		"release-it": "^18.1.2",
-		"shx": "^0.3.4",
-		"typescript": "^5.7.3",
-		"xo": "^0.60.0"
+		"@eslint/js": "^9.30.1",
+		"@m234/logger": "npm:@jsr/m234__logger",
+		"@release-it/keep-a-changelog": "^7.0.0",
+		"@types/node": "^24.0.10",
+		"eslint": "^9.30.1",
+		"globals": "^16.3.0",
+		"release-it": "^19.0.3",
+		"typescript": "^5.8.3",
+		"typescript-eslint": "^8.35.1"
 	},
 	"keywords": [
 		"nerdfonts",
