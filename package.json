@@ -32,7 +32,7 @@
 	"homepage": "https://github.com/Mopsgamer/nerd-fonts",
 	"release-it": {
 		"hooks": {
-			"before:init": "pnpm prerelease"
+			"before:init": "bun run prerelease"
 		},
 		"plugins": {
 			"@release-it/keep-a-changelog": {
