@@ -1,3 +1,3 @@
-export * from './icons.js';
-export * from './fs-icons.js';
-export * from './mappings.js';
+export * from './icons.js'
+export * from './fs-icons.js'
+export * from './mappings.js'
