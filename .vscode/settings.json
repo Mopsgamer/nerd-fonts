@@ -1,15 +1,6 @@
 {
-    "javascript.format.enable": false,
-    "typescript.format.enable": false,
-    "editor.defaultFormatter": "samverschueren.linter-xo",
-    "xo.format.enable": true,
-    "[typescript]": {
-        "editor.defaultFormatter": "samverschueren.linter-xo"
-    },
-    "[javascript]": {
-        "editor.defaultFormatter": "samverschueren.linter-xo"
-    },
     "files.eol": "\n",
-    "mochaExplorer.files": "./out/test/**/*.test.js",
-    "typescript.tsdk": "node_modules/typescript/lib"
+    "typescript.tsdk": "node_modules/typescript/lib",
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true
 }
