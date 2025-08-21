@@ -19,8 +19,7 @@
 	"main": "./out/src/index.js",
 	"files": [
 		"out",
-		"mappings*.json",
-		"!**/*.test.js"
+		"mappings*.json"
 	],
 	"repository": {
 		"type": "git",
