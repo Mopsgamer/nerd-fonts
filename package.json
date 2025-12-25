@@ -1,93 +1,79 @@
 {
-	"name": "@m234/nerd-fonts",
-	"version": "0.4.0",
-	"description": "Get Nerd Fonts glyph icons using a CSS class name or a file path with an extension.",
-	"type": "module",
-	"scripts": {
-		"generate": "bun run scripts/generate.ts",
-		"prerelease": "bun run test && bun run build:pub && bun run lint",
-		"test": "bun test src",
-		"build": "rm -rf out && bun run tsc -p src",
-		"build:pub": "rm -rf out && bun run tsc -p src/tsconfig.pub.json",
-		"lint": "bun run eslint .",
-		"release:major": "bun run release-it --increment=major",
-		"release:minor": "bun run release-it --increment=minor",
-		"release:patch": "bun run release-it --increment=patch"
-	},
-	"author": "Mopsgamer",
-	"license": "ISC",
-	"main": "./out/src/index.js",
-	"files": [
-		"out",
-		"mappings*.json"
-	],
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/Mopsgamer/nerd-fonts.git"
-	},
-	"bugs": {
-		"url": "https://github.com/Mopsgamer/nerd-fonts/issues"
-	},
-	"homepage": "https://github.com/Mopsgamer/nerd-fonts",
-	"release-it": {
-		"hooks": {
-			"before:init": "bun run prerelease"
-		},
-		"plugins": {
-			"@release-it/keep-a-changelog": {
-				"filename": "CHANGELOG.md"
-			}
-		},
-		"github": {
-			"release": true,
-			"draft": false,
-			"releaseName": "${version}"
-		},
-		"npm": {
-			"publish": true
-		}
-	},
-	"publishConfig": {
-		"access": "public"
-	},
-	"directories": {
-		"lib": "out"
-	},
-	"exports": {
-		".": {
-			"default": "./out/index.js",
-			"types": "./out/index.d.ts"
-		},
-		"./icons": {
-			"default": "./out/icons.js",
-			"types": "./out/icons.d.ts"
-		},
-		"./fs": {
-			"default": "./out/fs-icons.js",
-			"types": "./out/fs-icons.d.ts"
-		},
-		"./mappings": {
-			"default": "./out/mappings.js",
-			"types": "./out/mappings.d.ts"
-		}
-	},
-	"devDependencies": {
-		"@eslint/js": "^9.33.0",
-		"@m234/logger": "npm:@jsr/m234__logger",
-		"@release-it/keep-a-changelog": "^7.0.0",
-		"@stylistic/eslint-plugin": "^5.2.3",
-		"@types/node": "^24.3.0",
-		"chalk": "^5.6.0",
-		"eslint": "^9.33.0",
-		"globals": "^16.3.0",
-		"release-it": "^19.0.4",
-		"typescript": "^5.9.2",
-		"typescript-eslint": "^8.40.0"
-	},
-	"keywords": [
-		"nerdfonts",
-		"nerd-fonts",
-		"ansi",
-		"library"
-	]
+  "name": "@m234/nerd-fonts",
+  "version": "0.4.0",
+  "description": "Gets Nerd Fonts glyph icons via a CSS class name or a file path with an extension.",
+  "keywords": [
+    "ansi",
+    "library",
+    "nerd-fonts",
+    "nerdfonts"
+  ],
+  "bugs": {
+    "url": "https://github.com/Mopsgamer/nerd-fonts/issues"
+  },
+  "license": "MIT",
+  "author": "Mopsgamer",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mopsgamer/nerd-fonts.git"
+  },
+  "directories": {
+    "lib": "out"
+  },
+  "files": [
+    "mappings*.json",
+    "out"
+  ],
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./out/index.d.ts",
+      "default": "./out/index.js"
+    },
+    "./icons": {
+      "types": "./out/icons.d.ts",
+      "default": "./out/icons.js"
+    },
+    "./fs": {
+      "types": "./out/fs-icons.d.ts",
+      "default": "./out/fs-icons.js"
+    },
+    "./mappings": {
+      "types": "./out/mappings.d.ts",
+      "default": "./out/mappings.js"
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "generate": "bun run scripts/generate.ts",
+    "prerelease": "bun run test && bun run build:prod && bun run lint && bun run fmt --check",
+    "test": "bun run build && node --enable-source-maps --test out/**/*.test.js",
+    "test:patterns": "bun run build && node --enable-source-maps --test out/patterns/**/*.test.js",
+    "test:targets": "bun run build && node --enable-source-maps --test out/targets/**/*.test.js",
+    "test:noself": "bun run build && node --enable-source-maps --test-skip-pattern self --test out/**/*.test.js",
+    "test:self:git": "bun run build && node --enable-source-maps --test out/scan_self_git.test.js",
+    "test:self:npm": "bun run build && node --enable-source-maps --test out/scan_self_npm.test.js",
+    "lint": "bun run oxlint --type-aware",
+    "fmt": "bun run oxfmt",
+    "check": "bun tsgo -p . --noEmit",
+    "build": "rm -rf out && bun tsgo -p .",
+    "build:prod": "rm -rf out && tsgo -p tsconfig.prod.json",
+    "release:major": "bun run release-it --increment=major",
+    "release:minor": "bun run release-it --increment=minor",
+    "release:patch": "bun run release-it --increment=patch"
+  },
+  "devDependencies": {
+    "@m234/logger": "npm:@jsr/m234__logger",
+    "@release-it/keep-a-changelog": "^7.0.0",
+    "@types/node": "^24.3.0",
+    "@typescript/native-preview": "^7.0.0-dev.20251225.1",
+    "chalk": "^5.6.0",
+    "eslint": "^9.33.0",
+    "oxfmt": "^0.20.0",
+    "oxlint": "^1.35.0",
+    "oxlint-tsgolint": "^0.10.0",
+    "release-it": "^19.2.1"
+  }
 }

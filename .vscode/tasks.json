@@ -8,7 +8,7 @@
       },
       "type": "bun",
       "script": "release:major",
-      "label": "Release major - any backward incompatible changes",
+      "label": "Release major - any backward incompatible changes"
     },
     {
       "icon": {
@@ -17,7 +17,7 @@
       },
       "type": "bun",
       "script": "release:minor",
-      "label": "Release minor - any new public functionality or deprecation",
+      "label": "Release minor - any new public functionality or deprecation"
     },
     {
       "icon": {
@@ -26,7 +26,7 @@
       },
       "type": "bun",
       "script": "release:patch",
-      "label": "Release patch - any backward compatible bug fixes",
+      "label": "Release patch - any backward compatible bug fixes"
     },
     {
       "icon": {

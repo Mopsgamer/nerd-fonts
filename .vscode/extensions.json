@@ -1,7 +1,3 @@
 {
-	"recommendations": [
-		"samverschueren.linter-xo",
-		"hbenl.vscode-mocha-test-adapter",
-		"hbenl.vscode-test-explorer"
-	]
+  "recommendations": ["typescriptteam.native-preview", "oxc.oxc-vscode"]
 }

@@ -1,0 +1,11 @@
+{
+  "extends": "./tsconfig.json",
+  "exclude": ["**/*.test.*"],
+  // Visit https://aka.ms/tsconfig to read more about this file
+  "compilerOptions": {
+    // Other Outputs
+    "sourceMap": false,
+    "declaration": true,
+    "declarationMap": false
+  }
+}

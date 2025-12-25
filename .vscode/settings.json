@@ -1,6 +1,6 @@
 {
-    "files.eol": "\n",
-    "typescript.tsdk": "node_modules/typescript/lib",
-    "editor.tabSize": 2,
-    "editor.insertSpaces": true
+  "files.eol": "\n",
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true
 }
